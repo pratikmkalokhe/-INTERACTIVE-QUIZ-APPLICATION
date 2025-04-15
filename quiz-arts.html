@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arts Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">11th & 12th Quiz</div>
+  </nav>
+
+  <!-- Quiz Container -->
+  <div class="quiz-container">
+    <h1>Arts Quiz - <span id="standard-display"></span></h1>
+    <div id="question-container" class="question-container"></div>
+    <div class="quiz-controls">
+      <button id="next-btn" class="btn" onclick="loadNextQuestion()">Next</button>
+    </div>
+    <div id="result-container" class="result-container"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 Quiz App. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Questions for 11th Standard Arts
+    const questions11Arts = [
+      { question: "1.Who is known as the 'Father of English Literature'?", options: ["William Shakespeare", "Geoffrey Chaucer", "John Milton", "Charles Dickens"], correctAnswer: 0 },
+      { question: "2.What is the main theme of William Shakespeare’s play 'Macbeth'?", options: ["Ambition", "Love", "Revenge", "War"], correctAnswer: 0 },
+      { question: "3.Which artist is famous for painting the 'Mona Lisa'?", options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"], correctAnswer: 2 },
+      { question: "4.Which literary movement is associated with the novel 'Moby Dick'?", options: ["Romanticism", "Realism", "Modernism", "Transcendentalism"], correctAnswer: 3 },
+      { question: "5.Who wrote the play 'Romeo and Juliet'?", options: ["Christopher Marlowe", "William Shakespeare", "Charles Dickens", "Jane Austen"], correctAnswer: 1 },
+      { question: "6.Which of these is an example of a work by Homer?", options: ["The Iliad", "The Odyssey", "The Aeneid", "The Divine Comedy"], correctAnswer: 0 },
+      { question: "7.Which genre of literature focuses on a person’s inner thoughts and emotions?", options: ["Comedy", "Tragedy", "Drama", "Poetry"], correctAnswer: 3 },
+      { question: "8.Which of these famous novels was written by Jane Austen?", options: ["Pride and Prejudice", "Jane Eyre", "Wuthering Heights", "Mansfield Park"], correctAnswer: 0 },
+      { question: "9.Which art movement is associated with artists like Claude Monet?", options: ["Surrealism", "Impressionism", "Cubism", "Renaissance"], correctAnswer: 1 },
+      { question: "10.Which famous artist painted the 'Starry Night'?", options: ["Pablo Picasso", "Claude Monet", "Vincent van Gogh", "Leonardo da Vinci"], correctAnswer: 2 },
+      { question: "11.In which period of history was the Renaissance?", options: ["Medieval", "Classical", "Modern", "Early Modern"], correctAnswer: 3 },
+      { question: "12.What is the primary focus of Surrealism?", options: ["Real life", "Dreams and the unconscious", "Nature", "Classical stories"], correctAnswer: 1 },
+      { question: "13.Which of the following is NOT a Shakespearean tragedy?", options: ["Hamlet", "King Lear", "The Tempest", "Macbeth"], correctAnswer: 2 },
+      { question: "14.Who painted the 'Last Supper'?", options: ["Pablo Picasso", "Vincent van Gogh", "Leonardo da Vinci", "Michelangelo"], correctAnswer: 2 },
+      { question: "15.Which of these writers is associated with the Beat Generation?", options: ["Jack Kerouac", "Ernest Hemingway", "F. Scott Fitzgerald", "Mark Twain"], correctAnswer: 0 },
+      { question: "16.Who wrote 'The Catcher in the Rye'?", options: ["J.D. Salinger", "William Faulkner", "Ernest Hemingway", "John Steinbeck"], correctAnswer: 0 },
+      { question: "17.Which art movement was characterized by geometric shapes and fragmented forms?", options: ["Cubism", "Impressionism", "Baroque", "Renaissance"], correctAnswer: 0 },
+      { question: "18.What is the main characteristic of a Haiku poem?", options: ["Five lines", "Rhyme", "Seventeen syllables", "Two stanzas"], correctAnswer: 2 },
+      { question: "19.Which poet wrote 'The Raven'?", options: ["Edgar Allan Poe", "Robert Frost", "Walt Whitman", "Emily Dickinson"], correctAnswer: 0 },
+      { question: "20.Who is known for his paintings of 'Water Lilies'?", options: ["Pablo Picasso", "Claude Monet", "Vincent van Gogh", "Andy Warhol"], correctAnswer: 1 }
+    ];
+
+    // Questions for 12th Standard Arts
+    const questions12Arts = [
+      { question: "1.Who is known as the 'Father of Modern Philosophy'?", options: ["René Descartes", "Immanuel Kant", "Karl Marx", "Jean-Jacques Rousseau"], correctAnswer: 0 },
+      { question: "2.Which novel by George Orwell critiques totalitarian regimes?", options: ["1984", "Animal Farm", "Brave New World", "The Road"], correctAnswer: 0 },
+      { question: "3.What is the central theme of the play 'Death of a Salesman' by Arthur Miller?", options: ["The American Dream", "Love and Betrayal", "The Rise of Fascism", "War"], correctAnswer: 0 },
+      { question: "4.Who is the author of 'One Hundred Years of Solitude'?", options: ["Gabriel García Márquez", "Mario Vargas Llosa", "Carlos Fuentes", "Julio Cortázar"], correctAnswer: 0 },
+      { question: "5.What is the purpose of the art movement called Expressionism?", options: ["To depict realistic life", "To represent emotions and feelings", "To focus on harmony", "To emphasize geometric shapes"], correctAnswer: 1 },
+      { question: "6.What is the literary technique used in 'stream of consciousness' writing?", options: ["Monologue", "Metaphor", "Intertextuality", "Narrative voice"], correctAnswer: 3 },
+      { question: "7.Which of the following is a work by Franz Kafka?", options: ["The Trial", "Crime and Punishment", "Don Quixote", "The Great Gatsby"], correctAnswer: 0 },
+      { question: "8.Who painted the famous 'Guernica'?", options: ["Pablo Picasso", "Claude Monet", "Salvador Dalí", "Vincent van Gogh"], correctAnswer: 0 },
+      { question: "9.Which novel is often considered the first modern English novel?", options: ["Don Quixote", "The Odyssey", "Robinson Crusoe", "Pamela"], correctAnswer: 3 },
+      { question: "10.Which famous writer is associated with the concept of 'Stream of Consciousness'?", options: ["William Faulkner", "James Joyce", "Ernest Hemingway", "Virginia Woolf"], correctAnswer: 1 },
+      { question: "11.Which art movement focused on the abstract expression of emotions?", options: ["Surrealism", "Cubism", "Abstract Expressionism", "Fauvism"], correctAnswer: 2 },
+      { question: "12.What is the meaning of Dadaism?", options: ["The search for beauty", "Rejection of traditional norms", "Emphasis on realism", "Expression of hope"], correctAnswer: 1 },
+      { question: "13.Which of these plays was written by Tennessee Williams?", options: ["A Streetcar Named Desire", "The Crucible", "Waiting for Godot", "The Glass Menagerie"], correctAnswer: 0 },
+      { question: "14.Who was the first woman to win the Nobel Prize in Literature?", options: ["Virginia Woolf", "Sylvia Plath", "Toni Morrison", "Selma Lagerlöf"], correctAnswer: 3 },
+      { question: "15.Which art form is associated with surrealism?", options: ["Dreams", "Realistic portrayal of everyday life", "Historical events", "Cubism"], correctAnswer: 0 },
+      { question: "16.Who is known for the novel 'Crime and Punishment'?", options: ["Fyodor Dostoevsky", "Leo Tolstoy", "Vladimir Nabokov", "Anton Chekhov"], correctAnswer: 0 },
+      { question: "17.What style of art did Jackson Pollock pioneer?", options: ["Abstract Expressionism", "Cubism", "Impressionism", "Dadaism"], correctAnswer: 0 },
+      { question: "18.What is the central theme of 'The Great Gatsby'?", options: ["Love and Loss", "The American Dream", "Fate and Destiny", "Money and Greed"], correctAnswer: 1 },
+      { question: "19.Who is considered the first modernist writer?", options: ["James Joyce", "Franz Kafka", "Virginia Woolf", "T.S. Eliot"], correctAnswer: 0 }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let questions = [];
+
+    // Get the standard from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const standard = urlParams.get('standard');
+    if (standard === '11') {
+      questions = questions11Arts;
+    } else {
+      questions = questions12Arts;
+    }
+
+    // Display the standard on the page
+    document.getElementById("standard-display").innerText = standard + " Standard";
+
+    // Load the current question
+    function loadQuestion() {
+      const questionData = questions[currentQuestionIndex];
+      const questionContainer = document.getElementById("question-container");
+      questionContainer.innerHTML = `
+        <div class="question">
+          <h2>${questionData.question}</h2>
+          <div class="options">
+            ${questionData.options
+              .map((option, index) => {
+                return `<button class="option-btn" onclick="checkAnswer(${index})">${option}</button>`;
+              })
+              .join("")}
+          </div>
+        </div>
+      `;
+      document.getElementById("next-btn").style.display = "none";
+      document.getElementById("result-container").innerHTML = '';
+    }
+
+    // Check the answer
+    function checkAnswer(selectedIndex) {
+      const questionData = questions[currentQuestionIndex];
+      const resultContainer = document.getElementById("result-container");
+      
+      if (selectedIndex === questionData.correctAnswer) {
+        score++;
+        resultContainer.innerHTML = "<p class='correct'>Correct!</p>";
+      } else {
+        resultContainer.innerHTML = "<p class='incorrect'>Incorrect!</p>";
+      }
+      document.getElementById("next-btn").style.display = "block";
+    }
+
+    // Load the next question or show the final score
+    function loadNextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    // Show the final score
+    function showFinalScore() {
+      const questionContainer = document.getElementById("question-container");
+      questionContainer.innerHTML = `<h2>Quiz Completed!</h2>`;
+      const resultContainer = document.getElementById("result-container");
+      resultContainer.innerHTML = `<p class="final-score">Your score: ${score} out of ${questions.length}</p>`;
+      document.getElementById("next-btn").style.display = "none";
+    }
+
+    // Initialize the quiz
+    loadQuestion();
+  </script>
+</body>
+</html>

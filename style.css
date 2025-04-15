@@ -1,0 +1,277 @@
+/* General Reset and Body Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  color: #333;
+  line-height: 1.6;
+  padding-top: 60px; /* Adjust according to navbar height */
+  padding-bottom: 50px; /* Adjust according to footer height */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: transparent; /* Slight transparency for modern look */
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: transparent;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Home and Standard Container Styles */
+.home-container, .standard-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+
+/* Image Button */
+.image-wrapper button {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.image-wrapper button:hover {
+  background-color: #333;
+}
+
+/* Quiz Container Styles */
+.quiz-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #F0F8FF;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.question-container {
+  margin-bottom: 20px;
+}
+
+.question h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* MCQ Button */
+.option-btn {
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  background-color: white;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 0px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: static;
+  display: block;
+  margin: 10px auto;
+}
+
+.option-btn:hover {
+  background: rgb(255,255,255);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(178,255,255,1) 100%);
+  transform: translateY(-2px);
+}
+
+.option-btn:active {
+  transform: translateY(0);
+}
+
+.quiz-controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #333;
+}
+
+.result-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.correct {
+  color: green;
+  font-weight: bold;
+}
+
+.incorrect {
+  color: red;
+  font-weight: bold;
+}
+
+.final-score {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .image-container {
+    flex-wrap: wrap;
+  }
+  .footer:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  .navbar:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .image-wrapper {
+    flex-direction: column;
+  }
+  .quiz-container {
+    padding: 15px;
+  }
+  .question h2 {
+    font-size: 18px;
+  }
+  .option-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  .btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  .footer:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  .navbar:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+@media (max-width: 480px) {
+  .image-wrapper button {
+    bottom: 10px;
+    right: 10px;
+  }
+  .quiz-container {
+    padding: 10px;
+  }
+  .question h2 {
+    font-size: 16px;
+  }
+  .option-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+  .navbar:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}

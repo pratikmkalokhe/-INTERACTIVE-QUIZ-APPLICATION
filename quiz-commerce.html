@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commerce Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">11th & 12th Quiz</div>
+  </nav>
+
+  <!-- Quiz Container -->
+  <div class="quiz-container">
+    <h1>Commerce Quiz - <span id="standard-display"></span></h1>
+    <div id="question-container" class="question-container"></div>
+    <div class="quiz-controls">
+      <button id="next-btn" class="btn" onclick="loadNextQuestion()">Next</button>
+    </div>
+    <div id="result-container" class="result-container"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 Quiz App. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Questions for 11th Standard Commerce
+    const questions11Commerce = [
+      { question: "1.What is the main objective of business?", options: ["Profit", "Employee Welfare", "Customer Satisfaction", "None of the Above"], correctAnswer: 0 },
+      { question: "2.Which of the following is a source of business finance?", options: ["Loans", "Owner’s Capital", "Debentures", "All of the Above"], correctAnswer: 3 },
+      { question: "3.What is the full form of GST?", options: ["General Sales Tax", "Goods and Services Tax", "Global Sales Tax", "None of the Above"], correctAnswer: 1 },
+      { question: "4.Which of these is considered a non-current asset?", options: ["Building", "Cash", "Inventory", "Accounts Receivable"], correctAnswer: 0 },
+      { question: "5.What does SWOT analysis stand for?", options: ["Strengths, Weaknesses, Opportunities, Threats", "Strengths, Weaknesses, Outlook, Threats", "Structure, Workforce, Opportunity, Time", "None of the Above"], correctAnswer: 0 },
+      { question: "6.What is the primary objective of marketing?", options: ["Promotion", "Profit", "Sales", "Customer Satisfaction"], correctAnswer: 3 },
+      { question: "7.Which of these is a liability?", options: ["Accounts Receivable", "Accounts Payable", "Inventory", "None of the Above"], correctAnswer: 1 },
+      { question: "8.What is the capital of India?", options: ["Delhi", "Mumbai", "Chennai", "Kolkata"], correctAnswer: 0 },
+      { question: "9.What is the first step in the marketing process?", options: ["Research", "Segmentation", "Product Development", "Advertising"], correctAnswer: 0 },
+      { question: "10.Who is known as the father of modern economics?", options: ["John Maynard Keynes", "Adam Smith", "Karl Marx", "David Ricardo"], correctAnswer: 1 },
+      { question: "11.What is the principal activity of a joint stock company?", options: ["Buy and Sell Goods", "Manufacturing", "Buying and Selling of Stocks", "None of the Above"], correctAnswer: 2 },
+      { question: "12.Which type of business has unlimited liability?", options: ["Partnership", "Limited Liability Company", "Sole Proprietorship", "Public Limited Company"], correctAnswer: 2 },
+      { question: "13.What is the purpose of a balance sheet?", options: ["Show Profit and Loss", "Show Financial Position", "Show Revenue", "None of the Above"], correctAnswer: 1 },
+      { question: "14.What is the basic function of a bank?", options: ["Lending Money", "Depositing Money", "Currency Exchange", "All of the Above"], correctAnswer: 3 },
+      { question: "15.Which of the following is an indirect tax?", options: ["Income Tax", "GST", "Property Tax", "Corporate Tax"], correctAnswer: 1 },
+      { question: "16.What does the term ‘liquidity’ mean?", options: ["Amount of debt", "Ease of converting assets into cash", "Net worth of a company", "None of the Above"], correctAnswer: 1 },
+      { question: "17.Who is considered the father of accounting?", options: ["Luca Pacioli", "William Shakespeare", "Benjamin Franklin", "William of Ockham"], correctAnswer: 0 },
+      { question: "18.What does EBIT stand for?", options: ["Earnings Before Income Tax", "Earnings Before Interest and Tax", "Earnings Before International Tax", "None of the Above"], correctAnswer: 1 },
+      { question: "19.Which is not an example of a current liability?", options: ["Accounts Payable", "Short-term Loans", "Debentures", "Wages Payable"], correctAnswer: 2 },
+      { question: "20.Which of the following is not a form of business ownership?", options: ["Corporation", "Partnership", "Sole Proprietorship", "Retailer"], correctAnswer: 3 }
+    ];
+
+    // Questions for 12th Standard Commerce
+    const questions12Commerce = [
+      { question: "1.What is the difference between cash basis accounting and accrual accounting?", options: ["Revenue is recognized when received in cash", "Revenue is recognized when earned", "Both", "None of the Above"], correctAnswer: 2 },
+      { question: "2.What is the most important goal of financial management?", options: ["Maximizing profit", "Minimizing risk", "Maximizing shareholder wealth", "None of the Above"], correctAnswer: 2 },
+      { question: "3.What is the dividend per share?", options: ["Earnings of a company", "Amount paid to shareholders", "Interest paid by the company", "Net profit"], correctAnswer: 1 },
+      { question: "4.Which of the following is an intangible asset?", options: ["Buildings", "Cash", "Patents", "Inventory"], correctAnswer: 2 },
+      { question: "5.What is the full form of ROI?", options: ["Return on Investment", "Rate of Interest", "Return on Income", "Revenue of Investment"], correctAnswer: 0 },
+      { question: "6.Which type of company issues shares to the public?", options: ["Private Limited Company", "Sole Proprietorship", "Public Limited Company", "Limited Liability Partnership"], correctAnswer: 2 },
+      { question: "7.What is the main goal of advertising?", options: ["Create awareness", "Increase sales", "Promote products", "All of the above"], correctAnswer: 3 },
+      { question: "8.Which financial statement shows the company’s revenue and expenses?", options: ["Balance Sheet", "Income Statement", "Cash Flow Statement", "Retained Earnings"], correctAnswer: 1 },
+      { question: "9.What is the difference between gross profit and net profit?", options: ["Gross profit includes expenses", "Net profit excludes expenses", "Gross profit excludes expenses", "None of the Above"], correctAnswer: 2 },
+      { question: "10.What is the primary function of an investment bank?", options: ["Offer Loans", "Underwrite Stocks", "Provide Consultancy", "Promote Public Offering"], correctAnswer: 1 },
+      { question: "11.Which of the following is an example of financial leverage?", options: ["Stock Purchase", "Borrowing Funds", "Earning Revenue", "None of the Above"], correctAnswer: 1 },
+      { question: "12.What does a company’s profit margin tell us?", options: ["How much profit the company makes", "How well the company manages its resources", "The company’s total debt", "The company’s liquidity"], correctAnswer: 0 },
+      { question: "13.What is a fixed cost?", options: ["Variable with output", "Doesn’t change with output", "Both", "None of the Above"], correctAnswer: 1 },
+      { question: "14.What does a cash flow statement show?", options: ["Earnings of a company", "Liquidity and cash movement", "Total liabilities", "None of the Above"], correctAnswer: 1 },
+      { question: "15.What is the formula for calculating net income?", options: ["Revenue - Expenses", "Revenue + Expenses", "Revenue - Liabilities", "Revenue - Assets"], correctAnswer: 0 },
+      { question: "16.What is the main purpose of financial accounting?", options: ["Report earnings", "Provide financial information", "Help with tax returns", "Manage finances"], correctAnswer: 1 },
+      { question: "17.What is depreciation?", options: ["Decline in asset value", "Increase in asset value", "Decrease in market prices", "None of the Above"], correctAnswer: 0 },
+      { question: "18.What is the working capital formula?", options: ["Current Assets - Current Liabilities", "Assets - Liabilities", "Current Assets + Liabilities", "Revenue - Expenses"], correctAnswer: 0 },
+      { question: "19.Which of the following is an example of a short-term investment?", options: ["Bonds", "Shares", "Savings Account", "Treasury Bills"], correctAnswer: 3 }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let questions = [];
+
+    // Get the standard from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const standard = urlParams.get('standard');
+    if (standard === '11') {
+      questions = questions11Commerce;
+    } else {
+      questions = questions12Commerce;
+    }
+
+    // Display the standard on the page
+    document.getElementById("standard-display").innerText = standard + " Standard";
+
+    // Load the current question
+    function loadQuestion() {
+      const questionData = questions[currentQuestionIndex];
+      const questionContainer = document.getElementById("question-container");
+      questionContainer.innerHTML = `
+        <div class="question">
+          <h2>${questionData.question}</h2>
+          <div class="options">
+            ${questionData.options
+              .map((option, index) => {
+                return `<button class="option-btn" onclick="checkAnswer(${index})">${option}</button>`;
+              })
+              .join("")}
+          </div>
+        </div>
+      `;
+      document.getElementById("next-btn").style.display = "none";
+      document.getElementById("result-container").innerHTML = '';
+    }
+
+    // Check the answer
+    function checkAnswer(selectedIndex) {
+      const questionData = questions[currentQuestionIndex];
+      const resultContainer = document.getElementById("result-container");
+      
+      if (selectedIndex === questionData.correctAnswer) {
+        score++;
+        resultContainer.innerHTML = "<p class='correct'>Correct!</p>";
+      } else {
+        resultContainer.innerHTML = "<p class='incorrect'>Incorrect!</p>";
+      }
+      document.getElementById("next-btn").style.display = "block";
+    }
+
+    // Load the next question or show the final score
+    function loadNextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    // Show the final score
+    function showFinalScore() {
+      const questionContainer = document.getElementById("question-container");
+      questionContainer.innerHTML = `<h2>Quiz Completed!</h2>`;
+      const resultContainer = document.getElementById("result-container");
+      resultContainer.innerHTML = `<p class="final-score">Your score: ${score} out of ${questions.length}</p>`;
+      document.getElementById("next-btn").style.display = "none";
+    }
+
+    // Initialize the quiz
+    loadQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">11th & 12th Quiz</div>
+  </nav>
+
+  <!-- Quiz Container -->
+  <div class="quiz-container">
+    <h1>Science Quiz - <span id="standard-display"></span></h1>
+    <div id="question-container" class="question-container"></div>
+    <div class="quiz-controls">
+      <button id="next-btn" class="btn" onclick="loadNextQuestion()">Next</button>
+    </div>
+    <div id="result-container" class="result-container"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 Quiz App. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Questions for 11th Standard Science
+    const questions11 = [
+      { question: "1.What is the chemical symbol for water?", options: ["O2", "H2O", "CO2", "NaCl"], correctAnswer: 1 },
+      { question: "2.Which of the following is a Noble Gas?", options: ["Oxygen", "Nitrogen", "Neon", "Carbon"], correctAnswer: 2 },
+      { question: "3.Which planet is known as the Red Planet?", options: ["Mars", "Jupiter", "Saturn", "Venus"], correctAnswer: 0 },
+      { question: "4.What is the atomic number of Carbon?", options: ["6", "8", "12", "14"], correctAnswer: 0 },
+      { question: "5.What is the unit of electric current?", options: ["Ampere", "Volt", "Watt", "Ohm"], correctAnswer: 0 },
+      { question: "6.Which element has the chemical symbol 'Na'?", options: ["Sodium", "Nitrogen", "Nickel", "Neon"], correctAnswer: 0 },
+      { question: "7.Who proposed the theory of relativity?", options: ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"], correctAnswer: 1 },
+      { question: "8.What is the most common gas in Earth's atmosphere?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Argon"], correctAnswer: 1 },
+      { question: "9.What is the largest organ in the human body?", options: ["Heart", "Liver", "Skin", "Brain"], correctAnswer: 2 },
+      { question: "10.Which of the following is a renewable source of energy?", options: ["Coal", "Solar", "Oil", "Natural Gas"], correctAnswer: 1 },
+      { question: "11.Which gas is most abundant in the Earth's atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Helium"], correctAnswer: 2 },
+      { question: "12.What is the chemical formula for methane?", options: ["CH4", "CO2", "H2O", "C2H6"], correctAnswer: 0 },
+      { question: "13.What does DNA stand for?", options: ["Deoxyribonucleic Acid", "Deoxyribose Acid", "Dextrose Nucleic Acid", "Deoxylate Acid"], correctAnswer: 0 },
+      { question: "14.Which planet is closest to the Sun?", options: ["Mercury", "Venus", "Earth", "Mars"], correctAnswer: 0 },
+      { question: "15.What type of bond is formed between two hydrogen atoms?", options: ["Ionic Bond", "Covalent Bond", "Metallic Bond", "Hydrogen Bond"], correctAnswer: 1 },
+      { question: "16.Which element is used in making semiconductors?", options: ["Silicon", "Gold", "Copper", "Iron"], correctAnswer: 0 },
+      { question: "17.Who discovered the law of gravity?", options: ["Isaac Newton", "Albert Einstein", "Nikola Tesla", "Galileo Galilei"], correctAnswer: 0 },
+      { question: "18.What is the chemical symbol for Iron?", options: ["Fe", "Ir", "I", "In"], correctAnswer: 0 },
+      { question: "19.Which scientist developed the theory of evolution?", options: ["Charles Darwin", "Galileo Galilei", "Isaac Newton", "Albert Einstein"], correctAnswer: 0 },
+      { question: "20.Which of the following is a type of electromagnetic radiation?", options: ["Sound Waves", "Light Waves", "Water Waves", "Heat Waves"], correctAnswer: 1 }
+    ];
+
+    // Questions for 12th Standard Science
+    const questions12 = [
+      { question: "1.What is the chemical formula for sulfuric acid?", options: ["H2SO4", "H2CO3", "H2O", "HCl"], correctAnswer: 0 },
+      { question: "2.Which gas is responsible for global warming?", options: ["Oxygen", "Carbon Dioxide", "Methane", "Nitrogen"], correctAnswer: 1 },
+      { question: "3.What is the pH value of pure water?", options: ["7", "0", "14", "10"], correctAnswer: 0 },
+      { question: "4.Which of these is a type of chemical reaction?", options: ["Combustion", "Reflection", "Refraction", "Transmission"], correctAnswer: 0 },
+      { question: "5.What is the energy source of stars?", options: ["Nuclear Fusion", "Chemical Reactions", "Electromagnetic Radiation", "Gravity"], correctAnswer: 0 },
+      { question: "6.What is the main component of the Earth's atmosphere?", options: ["Nitrogen", "Oxygen", "Argon", "Carbon Dioxide"], correctAnswer: 0 },
+      { question: "7.What type of radiation has the highest energy?", options: ["Gamma Rays", "X-rays", "UV Rays", "Microwaves"], correctAnswer: 0 },
+      { question: "8.What is the atomic number of Neon?", options: ["10", "12", "8", "6"], correctAnswer: 0 },
+      { question: "9.Which scientist developed the concept of radioactivity?", options: ["Marie Curie", "Albert Einstein", "Isaac Newton", "Niels Bohr"], correctAnswer: 0 },
+      { question: "10.What is the chemical symbol for Potassium?", options: ["K", "P", "Po", "Pt"], correctAnswer: 0 },
+      { question: "11.Which of these is a greenhouse gas?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"], correctAnswer: 1 },
+      { question: "12.What is the primary source of energy for plants?", options: ["Water", "Soil", "Sunlight", "Air"], correctAnswer: 2 },
+      { question: "13.Who is known for the discovery of the electron?", options: ["Albert Einstein", "Isaac Newton", "J.J. Thomson", "Marie Curie"], correctAnswer: 2 },
+      { question: "14.Which gas do plants absorb for photosynthesis?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Helium"], correctAnswer: 2 },
+      { question: "15.What is the chemical formula for carbon dioxide?", options: ["CO2", "CO", "C2H6", "CH4"], correctAnswer: 0 },
+      { question: "16.What is the main function of the mitochondria?", options: ["Protein Synthesis", "Energy Production", "DNA Replication", "Storage of Genetic Material"], correctAnswer: 1 },
+      { question: "17.What is the SI unit of force?", options: ["Newton", "Joule", "Ampere", "Pascal"], correctAnswer: 0 },
+      { question: "18.What is the atomic number of Hydrogen?", options: ["1", "2", "3", "0"], correctAnswer: 0 },
+      { question: "19.Which of these is a type of body tissue?", options: ["Muscle", "Bone", "Skin", "All of the Above"], correctAnswer: 3 },
+      { question: "20.What is the primary function of red blood cells?", options: ["Carrying Oxygen", "Fighting Infection", "Digesting Food", "Producing Hormones"], correctAnswer: 0 }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let questions = [];
+
+    // Get the standard from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const standard = urlParams.get('standard');
+    if (standard === '11') {
+      questions = questions11;
+    } else {
+      questions = questions12;
+    }
+
+    // Display the standard on the page
+    document.getElementById("standard-display").innerText = standard + " Standard";
+
+    // Load the current question
+    function loadQuestion() {
+      const questionData = questions[currentQuestionIndex];
+      const questionContainer = document.getElementById("question-container");
+      questionContainer.innerHTML = `
+        <div class="question">
+          <h2>${questionData.question}</h2>
+          <div class="options">
+            ${questionData.options
+              .map((option, index) => {
+                return `<button class="option-btn" onclick="checkAnswer(${index})">${option}</button>`;
+              })
+              .join("")}
+          </div>
+        </div>
+      `;
+      document.getElementById("next-btn").style.display = "none";
+      document.getElementById("result-container").innerHTML = '';
+    }
+
+    // Check the answer
+    function checkAnswer(selectedIndex) {
+      const questionData = questions[currentQuestionIndex];
+      const resultContainer = document.getElementById("result-container");
+      
+      if (selectedIndex === questionData.correctAnswer) {
+        score++;
+        resultContainer.innerHTML = "<p class='correct'>Correct!</p>";
+      } else {
+        resultContainer.innerHTML = "<p class='incorrect'>Incorrect!</p>";
+      }
+      document.getElementById("next-btn").style.display = "block";
+    }
+
+    // Load the next question or show the final score
+    function loadNextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    // Show the final score
+    function showFinalScore() {
+      const questionContainer = document.getElementById("question-container");
+      questionContainer.innerHTML = `<h2>Quiz Completed!</h2>`;
+      const resultContainer = document.getElementById("result-container");
+      resultContainer.innerHTML = `<p class="final-score">Your score: ${score} out of ${questions.length}</p>`;
+      document.getElementById("next-btn").style.display = "none";
+    }
+
+    // Initialize the quiz
+    loadQuestion();
+  </script>
+</body>
+</html>

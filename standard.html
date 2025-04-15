@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standard Selection</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand">11th & 12th Quiz</div>
+  </nav>
+
+  <!-- Standard Container -->
+  <div class="standard-container">
+    <div class="image-container">
+      <div class="image-wrapper">
+        <img src="img/sci.jpg" alt="Standard Image 1" class="standard-image">
+        <button class="btn" onclick="window.location.href='quiz-science.html?standard=' + getStandard()">Science</button>
+      </div>
+      <div class="image-wrapper">
+        <img src="img/com.jpg" alt="Standard Image 2" class="standard-image">
+        <button class="btn" onclick="window.location.href='quiz-commerce.html?standard=' + getStandard()">Commerce</button>
+      </div>
+      <div class="image-wrapper">
+        <img src="img/art.jpg" alt="Standard Image 3" class="standard-image">
+        <button class="btn" onclick="window.location.href='quiz-arts.html?standard=' + getStandard()">Arts</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2023 Quiz App. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function getStandard() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('standard');
+    }
+  </script>
+</body>
+</html>
